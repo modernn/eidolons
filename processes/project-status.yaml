@@ -1,0 +1,65 @@
+# Project Status Process
+# Keep an eye on LapForge health
+
+id: project-status
+name: Project Status Check
+owner: bilby
+schedule:
+  kind: cron
+  expr: "0 9 * * 1-5"  # 9 AM UTC, weekdays
+  tz: UTC
+
+purpose: |
+  Daily check on LapForge project health.
+  Catch issues early, keep momentum visible.
+
+triggers:
+  - time: "9 AM UTC on weekdays"
+  - manual: "/project-status" or "how's LapForge?"
+
+checks:
+  git_status:
+    - uncommitted_changes: "Any work in progress?"
+    - branch_status: "Behind main?"
+    - recent_commits: "What happened recently?"
+  
+  tests:
+    - last_run: "When did tests last pass?"
+    - coverage: "Any degradation?"
+    - failing: "Any currently failing?"
+  
+  build:
+    - status: "Does it compile?"
+    - warnings: "New warnings?"
+  
+  dependencies:
+    - outdated: "Any packages need updating?"
+    - security: "Any vulnerability alerts?"
+
+outputs:
+  all_good:
+    action: "Silent — don't interrupt Link"
+  
+  issues_found:
+    action: "Report to Link via Telegram"
+    format: |
+      🛠️ LapForge Status:
+      
+      [Issues summary]
+      
+      Want me to look into any of these?
+  
+  progress_update:
+    action: "Weekly summary (Mondays)"
+    includes:
+      - Commits this week
+      - Tests passing
+      - Current branch/feature
+      - Blockers if any
+
+implementation:
+  session_target: isolated
+  payload:
+    kind: agentTurn
+    model: "anthropic/claude-3-5-haiku-latest"
+    timeout_seconds: 120

@@ -1,0 +1,70 @@
+# Morning Briefing Process
+# Start Link's day with context
+
+id: morning-briefing
+name: Morning Briefing
+owner: nagatha
+schedule:
+  kind: cron
+  expr: "30 7 * * *"
+  tz: America/Anchorage  # Alaska time
+
+purpose: |
+  Give Link a clear picture of his day before it starts.
+  Proactive context reduces ADHD overwhelm.
+
+triggers:
+  - time: "7:30 AM Alaska time"
+  - manual: "/briefing" or "what's today look like?"
+
+inputs:
+  - Calendar (Skylight MCP)
+  - Recent memory (last 24-48h)
+  - Pending tasks
+  - Weather (if relevant)
+
+content:
+  structure:
+    - greeting: "Good morning! Here's your day..."
+    - calendar_summary: "What's scheduled"
+    - conflicts: "Any scheduling issues"
+    - prep_needed: "Things to get ready"
+    - family_notes: "Relevant family context"
+    - encouragement: "You've got this"
+  
+  examples:
+    full_day: |
+      Good morning, Link! ☀️
+      
+      **Today's Schedule:**
+      - 10:00 AM — Claire's OT (remember to leave by 9:30)
+      - 2:00 PM — School pickup (early today!)
+      - 6:00 PM — Family dinner
+      
+      **Heads up:** Tight turnaround between OT and pickup.
+      Maybe prep lunch before you leave this morning?
+      
+      **The boys** are with Kristy this week.
+      
+      You've got this. 💪
+    
+    light_day: |
+      Good morning! 🌤️
+      
+      Light day today — just school pickup at 3.
+      Good chance to make progress on LapForge?
+      
+      Kayla mentioned wanting to talk about the weekend
+      plans. Maybe find a quiet moment for that.
+
+delivery:
+  channel: telegram
+  account: nagatha
+  silent: false  # Morning is okay to notify
+
+implementation:
+  session_target: isolated
+  payload:
+    kind: agentTurn
+    model: "anthropic/claude-3-5-haiku-latest"  # Fast, simple task
+    timeout_seconds: 60

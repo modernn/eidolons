@@ -1,0 +1,52 @@
+# Heartbeat Check Process
+# Proactive monitoring and light maintenance
+
+id: heartbeat-check
+name: Heartbeat Check
+owner: skippy-sonnet
+schedule:
+  kind: every
+  interval_ms: 1800000  # 30 minutes
+
+purpose: |
+  Periodic check-in to catch things that need attention.
+  Not every heartbeat needs action — most return HEARTBEAT_OK.
+
+triggers:
+  - time: "Every 30 minutes"
+  - system: "Gateway heartbeat poll"
+
+checks:
+  priority_order:
+    - urgent_messages: "Any unhandled urgent items?"
+    - calendar_soon: "Appointments in next 2 hours?"
+    - reminders_due: "Any reminders to fire?"
+    - system_health: "Any errors in logs?"
+  
+  optional_rotation:
+    - email: "Urgent unread? (2-4x daily)"
+    - weather: "Relevant if Link might go out"
+    - mentions: "Social notifications"
+
+decision_tree:
+  nothing_found: "Reply HEARTBEAT_OK"
+  something_found: "Take action or alert Link"
+  during_quiet_hours: "Suppress unless urgent"
+
+quiet_hours:
+  start: "23:00"
+  end: "07:00"
+  timezone: "America/Anchorage"
+  exceptions: ["urgent calendar", "system down"]
+
+state_tracking:
+  file: "memory/heartbeat-state.json"
+  tracks:
+    - last_checks: { email: timestamp, calendar: timestamp }
+    - suppressed_alerts: []
+
+implementation:
+  session_target: main
+  payload:
+    kind: systemEvent
+    text: "Read HEARTBEAT.md if it exists. Follow it strictly. If nothing needs attention, reply HEARTBEAT_OK."

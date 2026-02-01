@@ -1,0 +1,83 @@
+# Nightly Retrospective Process
+# Self-improvement through daily review
+
+id: nightly-retrospective
+name: Nightly Retrospective
+owner: skippy-sonnet
+schedule:
+  kind: cron
+  expr: "30 3 * * *"
+  tz: UTC
+
+purpose: |
+  Review the previous day's conversations, identify patterns,
+  and propose improvements to agents, talents, and processes.
+
+triggers:
+  - time: "3:30 AM UTC (low-traffic window)"
+  - manual: "/retrospective"
+
+inputs:
+  - All agent session histories (last 24h)
+  - Tool call success/failure rates
+  - User corrections and rephrases
+  - Escalation events
+
+phases:
+  gather:
+    duration: "2 min"
+    actions:
+      - Pull session histories from all agents
+      - Extract tool usage patterns
+      - Note error events
+      - Collect user satisfaction signals
+  
+  analyze:
+    duration: "5 min"
+    questions:
+      - What types of requests dominated?
+      - Where did we need multiple attempts?
+      - What tools failed or were slow?
+      - What did Link have to repeat/rephrase?
+      - Which escalations were appropriate?
+  
+  critique:
+    duration: "3 min"
+    questions:
+      - Where did we struggle?
+      - What questions couldn't we answer?
+      - What tools were missing?
+      - What context did we lack?
+  
+  propose:
+    duration: "5 min"
+    outputs:
+      - Memory updates (auto-apply if low-risk)
+      - SOUL.md tweaks (queue for review)
+      - Talent adjustments (queue for review)
+      - Process changes (queue for review)
+      - New tools/integrations needed
+
+outputs:
+  daily_summary:
+    path: "memory/retrospective/YYYY-MM-DD.md"
+    contents:
+      - What happened today
+      - What worked well
+      - What needs improvement
+      - Proposals generated
+  
+  proposals:
+    path: "~/.moltbot/retrospective/pending/"
+    approval_required: true
+    tiers:
+      auto_apply: ["memory cleanup", "heartbeat adjustments"]
+      needs_review: ["SOUL changes", "talent changes", "process changes"]
+      needs_approval: ["config changes", "new integrations"]
+
+implementation:
+  session_target: isolated
+  payload:
+    kind: agentTurn
+    model: "anthropic/claude-sonnet-4-5"
+    timeout_seconds: 600

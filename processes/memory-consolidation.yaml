@@ -1,0 +1,69 @@
+# Memory Consolidation Process
+# Keep long-term memory healthy
+
+id: memory-consolidation
+name: Memory Consolidation
+owner: skippy-sonnet
+schedule:
+  kind: cron
+  expr: "0 4 * * 0"  # 4 AM UTC on Sundays
+  tz: UTC
+
+purpose: |
+  Review daily notes and update long-term memory (MEMORY.md).
+  Like a human reviewing their journal and updating mental models.
+
+triggers:
+  - time: "Weekly on Sunday 4 AM UTC"
+  - manual: "/consolidate-memory"
+
+inputs:
+  - Daily notes: "memory/YYYY-MM-DD.md (last 7 days)"
+  - Current MEMORY.md
+  - LanceDB vector memory
+
+phases:
+  review:
+    actions:
+      - Read last 7 days of daily notes
+      - Identify significant events, decisions, lessons
+      - Note patterns across days
+  
+  curate:
+    actions:
+      - What's worth keeping long-term?
+      - What's now outdated in MEMORY.md?
+      - What patterns/preferences emerged?
+      - What should be remembered about family?
+  
+  update:
+    actions:
+      - Add new entries to MEMORY.md
+      - Remove stale information
+      - Consolidate duplicate facts
+      - Update confidence levels
+  
+  cleanup:
+    actions:
+      - Archive old daily notes (>30 days)
+      - Prune redundant vector memories
+      - Check for contradictions
+
+outputs:
+  memory_md_updates:
+    file: "MEMORY.md"
+    changes_logged: true
+  
+  consolidation_report:
+    file: "memory/consolidation/YYYY-MM-DD.md"
+    contents:
+      - What was reviewed
+      - What was added/removed
+      - Patterns noticed
+
+implementation:
+  session_target: isolated
+  payload:
+    kind: agentTurn
+    model: "anthropic/claude-sonnet-4-5"
+    timeout_seconds: 300

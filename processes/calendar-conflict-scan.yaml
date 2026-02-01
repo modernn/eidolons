@@ -1,0 +1,65 @@
+# Calendar Conflict Scan Process
+# Catch scheduling problems before they bite
+
+id: calendar-conflict-scan
+name: Calendar Conflict Scan
+owner: nagatha
+schedule:
+  kind: every
+  interval_ms: 3600000  # Every hour
+
+purpose: |
+  Proactively detect calendar conflicts, driving time issues,
+  and scheduling problems before they become emergencies.
+
+triggers:
+  - time: "Every hour"
+  - event: "New calendar event added"
+  - manual: "/check-calendar"
+
+checks:
+  double_bookings:
+    description: "Two events at the same time"
+    action: "Alert immediately"
+  
+  driving_time:
+    description: "Not enough time between locations"
+    buffer: "15 minutes minimum"
+    action: "Suggest adjustment"
+  
+  custody_conflicts:
+    description: "Event scheduled when kids aren't with Link"
+    action: "Flag for review"
+  
+  therapy_overlaps:
+    description: "Work meeting during therapy time"
+    action: "Protect therapy, suggest reschedule"
+  
+  prep_time:
+    description: "Events needing preparation"
+    action: "Add reminder for prep"
+
+lookhead:
+  default: "48 hours"
+  weekly_scan: "7 days (Sunday mornings)"
+
+outputs:
+  no_conflicts:
+    action: "Silent — don't bother Link"
+  
+  conflicts_found:
+    action: "Alert with specific issue and suggestion"
+    channel: "telegram"
+    format: |
+      ⚠️ Calendar conflict detected:
+      
+      [Issue description]
+      
+      Suggestion: [How to fix]
+
+implementation:
+  session_target: isolated
+  payload:
+    kind: agentTurn
+    model: "anthropic/claude-3-5-haiku-latest"  # Fast, focused
+    timeout_seconds: 60
