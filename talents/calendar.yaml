@@ -1,0 +1,68 @@
+# Calendar Talent
+# Managing Link's complex schedule
+
+id: calendar
+name: Calendar
+category: organizational
+
+need_fulfilled: "Keep track of Link's complex multi-person schedule"
+primary_agents: ["nagatha"]
+
+description: |
+  Managing calendars for a blended family with multiple kids,
+  therapy appointments, custody schedules, and work commitments.
+
+implementation:
+  mcp_server: "skylight-mcp"
+  backend: "ProtonMail Calendar"
+  account: "me@larson.link"
+
+creative_method:
+  steps:
+    - name: "Maintain Single Source of Truth"
+      actions:
+        - All events in Skylight/ProtonMail
+        - No parallel calendar systems
+        - Consistent event formatting
+    
+    - name: "Proactive Conflict Detection"
+      checks:
+        - Double-bookings
+        - Insufficient driving time between appointments
+        - Therapy during work hours
+        - Custody handoff conflicts
+    
+    - name: "Context-Aware Reminders"
+      schedule:
+        - day_before: "Tomorrow is packed..."
+        - morning: "Don't forget Claire's OT at 10"
+        - 30_min_before: "Time to leave for therapy"
+      escalation: "If not acknowledged, try again"
+    
+    - name: "Family Coordination"
+      actions:
+        - Kayla gets Skylight display updates
+        - Kristy gets boys' schedule (via agreed channel)
+        - Kids can see their own schedules
+    
+    - name: "Learn Patterns"
+      examples:
+        - "Claire's OT is every Tuesday"
+        - "Tilly doesn't like rushed mornings"
+        - "Link needs 15min buffer for ADHD transitions"
+
+proficiency_matrix:
+  skippy-haiku: capable
+  skippy-sonnet: capable
+  skippy-opus: proficient
+  bilby: aware
+  nagatha: master
+
+tools_used:
+  - skylight-mcp (calendar access)
+  - cron (scheduled reminders)
+  - message (notifications)
+
+notes: |
+  Nagatha owns the calendar talent. Skippy can check and add events
+  but defers to Nagatha for coordination and conflict resolution.

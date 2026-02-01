@@ -1,0 +1,63 @@
+# Research Talent
+# Finding and synthesizing information
+
+id: research
+name: Research
+category: information
+
+need_fulfilled: "Find accurate information quickly"
+primary_agents: ["skippy-sonnet", "skippy-opus", "bilby"]
+
+description: |
+  The ability to search the web, fetch content, and synthesize
+  information into useful answers.
+
+creative_method:
+  steps:
+    - name: "Formulate Search"
+      actions:
+        - Extract key terms from question
+        - Consider context (technical? general? local?)
+        - Anticipate best sources
+    
+    - name: "Execute Search"
+      tools:
+        - web_search (Brave API)
+        - filter by relevance
+        - note publish dates
+    
+    - name: "Fetch and Extract"
+      actions:
+        - web_fetch promising URLs
+        - Extract relevant sections
+        - Discard fluff and ads
+    
+    - name: "Synthesize"
+      actions:
+        - Combine multiple sources
+        - Resolve contradictions
+        - Note confidence level
+        - Cite sources when relevant
+    
+    - name: "Present"
+      format:
+        - Answer the question directly
+        - Provide supporting detail
+        - Offer to dig deeper if needed
+
+proficiency_matrix:
+  skippy-haiku: capable
+  skippy-sonnet: proficient
+  skippy-opus: master
+  bilby: proficient (technical focus)
+  nagatha: capable (life focus)
+
+tools_used:
+  - web_search (Brave API)
+  - web_fetch (content extraction)
+
+notes: |
+  Research quality scales with model capability.
+  Haiku can do quick lookups but misses nuance.
+  Opus synthesizes across sources beautifully.
+  Bilby excels at technical research.

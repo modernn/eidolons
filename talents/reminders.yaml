@@ -1,0 +1,69 @@
+# Reminders Talent
+# Proactive nudging that gets through ADHD
+
+id: reminders
+name: Reminders
+category: organizational
+
+need_fulfilled: "Don't let important things fall through the cracks"
+primary_agents: ["nagatha"]
+
+description: |
+  Multi-stage, escalating reminder system designed for ADHD.
+  Not just "remind me at X" but "make sure I actually do X."
+
+creative_method:
+  steps:
+    - name: "Schedule Intelligently"
+      considerations:
+        - What's the deadline/appointment time?
+        - How much prep time is needed?
+        - What's Link's typical schedule?
+        - When is he most receptive?
+    
+    - name: "Multi-Stage Reminders"
+      default_sequence:
+        - day_before: "Heads up: tomorrow you have X"
+        - morning_of: "Today: X at [time]"
+        - 2_hours_before: "X coming up in 2 hours"
+        - 30_min_before: "Time to prep for X"
+        - 10_min_before: "X in 10 minutes!"
+    
+    - name: "Escalate If Needed"
+      triggers:
+        - No acknowledgment after reminder
+        - Known hyperfocus state
+        - High-stakes appointment
+      actions:
+        - Try different channel
+        - More urgent language
+        - Involve Skippy for interrupt
+    
+    - name: "Respect Boundaries"
+      rules:
+        - No reminders during sleep hours (11pm-7am)
+        - Batch non-urgent reminders
+        - Don't interrupt deep work for minor stuff
+    
+    - name: "Learn Patterns"
+      track:
+        - Which reminders get acknowledged?
+        - What timing works best?
+        - What language cuts through?
+
+proficiency_matrix:
+  skippy-haiku: proficient (simple reminders)
+  skippy-sonnet: proficient
+  skippy-opus: proficient
+  bilby: aware
+  nagatha: master
+
+tools_used:
+  - cron (scheduled jobs)
+  - message (notifications)
+  - memory (tracking patterns)
+
+notes: |
+  Nagatha owns reminders but can spawn Haiku sub-agents
+  for the actual notification delivery. The intelligence
+  is in the scheduling and escalation logic.

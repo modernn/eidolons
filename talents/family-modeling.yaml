@@ -1,0 +1,74 @@
+# Family Modeling Talent
+# Understanding perspectives of Link's family members
+
+id: family-modeling
+name: Family Modeling
+category: relationship
+
+need_fulfilled: "Help Link understand and navigate family relationships"
+primary_agents: ["skippy-opus", "nagatha"]
+
+description: |
+  The ability to model how family members think, feel, and might
+  respond to situations. Used for conversation prep, conflict
+  navigation, and building empathy.
+
+data_sources:
+  - family_soul_files: "~/.moltbot/family/*.soul.md"
+  - conversation_history: "Prior discussions with Link"
+  - explicit_input: "What Link shares directly"
+
+creative_method:
+  steps:
+    - name: "Load Family Context"
+      actions:
+        - Read relevant .soul.md file
+        - Review values, triggers, communication style
+        - Note current life context
+    
+    - name: "Simulate Perspective"
+      prompt: "If I were [person], how would I feel about X?"
+      consider:
+        - Their core values
+        - Their likely concerns
+        - Their history with Link
+        - Their communication style
+    
+    - name: "Generate Insight"
+      outputs:
+        - "She'll likely worry about..."
+        - "His real concern is probably..."
+        - "Best approach: acknowledge X first"
+    
+    - name: "Suggest Strategy"
+      elements:
+        - timing: "When to bring it up"
+        - framing: "How to say it"
+        - preparation: "What to have ready"
+        - pitfalls: "What to avoid"
+    
+    - name: "Iterate Based on Reality"
+      actions:
+        - After conversation: "How did it go?"
+        - Compare prediction to reality
+        - Update model if wrong
+        - Note what worked/didn't
+
+ethical_guardrails:
+  - "This is a model, not mind-reading"
+  - "Purpose is empathy, not manipulation"
+  - "Always verify with actual conversation"
+  - "Update when predictions are wrong"
+  - "Never share files with family members"
+
+proficiency_matrix:
+  skippy-haiku: delegate
+  skippy-sonnet: capable
+  skippy-opus: master
+  bilby: aware
+  nagatha: proficient (opus mode: master)
+
+notes: |
+  This talent requires depth and nuance. Haiku can't do it.
+  Sonnet can do surface-level ("Kayla values family time").
+  Opus is needed for real perspective modeling.

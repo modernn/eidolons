@@ -1,0 +1,56 @@
+# Orchestration Talent
+# Deciding who handles what
+
+id: orchestration
+name: Orchestration
+category: meta
+
+need_fulfilled: "Know who should handle what task"
+primary_agents: ["skippy-haiku", "skippy-sonnet", "skippy-opus"]
+
+description: |
+  The meta-talent of routing requests to the right agent and resolution.
+  This is what makes the collective work as a unified system.
+
+creative_method:
+  steps:
+    - name: "Analyze Request Complexity"
+      actions:
+        - Check keywords (quick, detailed, comprehensive, analyze)
+        - Count required steps
+        - Detect emotional/family content
+        - Assess system complexity
+    
+    - name: "Consider Context"
+      actions:
+        - What's Link's current state? (busy, relaxed, stressed)
+        - Is this urgent?
+        - Who handled similar requests before?
+        - What's the conversation history?
+    
+    - name: "Route Decision"
+      rules:
+        - simple_lookup: "Haiku handles"
+        - standard_request: "Sonnet handles"
+        - complex_analysis: "Opus handles"
+        - code_related: "Route to Bilby"
+        - life_admin: "Route to Nagatha"
+        - multi_agent: "Orchestrate sequence"
+    
+    - name: "Monitor and Adjust"
+      actions:
+        - Did the routed agent succeed?
+        - Was escalation needed?
+        - Update routing heuristics
+
+proficiency_matrix:
+  skippy-haiku: capable
+  skippy-sonnet: proficient
+  skippy-opus: master
+  bilby: aware
+  nagatha: aware
+
+notes: |
+  Skippy is the primary orchestrator. Bilby and Nagatha may route
+  to each other for cross-domain tasks, but Skippy usually handles
+  the initial routing decision.

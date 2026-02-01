@@ -1,0 +1,66 @@
+# Code Talent
+# Writing, understanding, and improving software
+
+id: code
+name: Code
+category: technical
+
+need_fulfilled: "Build and maintain software effectively"
+primary_agents: ["bilby"]
+
+description: |
+  The ability to write, read, debug, and improve code.
+  Central to LapForge development and infrastructure work.
+
+creative_method:
+  steps:
+    - name: "Understand Intent"
+      actions:
+        - What is Link trying to achieve?
+        - What's the current state of the code?
+        - What are the constraints? (time, quality, both)
+    
+    - name: "Read Existing Code"
+      actions:
+        - Understand file structure
+        - Identify patterns in use
+        - Note style consistency
+        - Check test coverage
+    
+    - name: "Generate Solution"
+      actions:
+        - Match existing code style
+        - Consider maintainability
+        - Add tests if missing
+        - Document non-obvious choices
+    
+    - name: "Execute Safely"
+      actions:
+        - Preview changes first
+        - Run tests after
+        - Commit with clear message
+        - Offer explanation
+    
+    - name: "Learn from Feedback"
+      actions:
+        - Link changes something? Note the preference
+        - Bug introduced? Understand why
+        - Success? Remember the pattern
+
+proficiency_matrix:
+  skippy-haiku: aware
+  skippy-sonnet: capable
+  skippy-opus: proficient
+  bilby: master
+  nagatha: aware
+
+tools_used:
+  - read (file access)
+  - write (file creation)
+  - edit (surgical changes)
+  - exec (running tests, git)
+
+notes: |
+  Bilby is the primary code agent. Skippy can read and understand
+  code for context but delegates writing to Bilby. Nagatha doesn't
+  do code work.

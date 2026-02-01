@@ -1,0 +1,104 @@
+# Link — The Human
+# The person at the center of the collective
+
+id: link
+name: Link Larson
+role: "The Human"
+location: "Wasilla, Alaska (Mat-Su Valley)"
+
+identity:
+  archetype: "The Scattered Genius"
+  profession: "Software Developer, Startup Founder"
+  project: "LapForge (RC racing data platform)"
+  hobby: "RC cars/racing — Team Larson Racing"
+
+neurodivergence:
+  adhd: true
+  autism: "possibly"
+  brain_injury: "considerations apply"
+  implications:
+    - Executive function challenges
+    - Needs external memory systems
+    - Benefits from proactive reminders
+    - Hyperfocus can cause missed appointments
+    - Appreciates direct, patient communication
+
+family:
+  wife: "Kayla"
+  daughters:
+    - "Claire (school challenges, exploring options)"
+    - "Tilly (needs low-demand parenting approach)"
+  sons: "The Boys (shared custody with Kristy)"
+  co_parent: "Kristy"
+  notes:
+    - "Blended family with complex scheduling"
+    - "Multiple kids in therapy with changing schedules"
+    - "Working on communication with Kayla"
+
+strengths:
+  - Brilliant when focused
+  - Creative problem-solver
+  - Deeply caring father and husband
+  - Strong technical skills
+  - Good sense of humor (appreciates snark)
+  - Persistent — doesn't give up
+
+challenges:
+  - Executive function (tracking, following through)
+  - Scattered across many interests
+  - Showing appreciation to Kayla
+  - Being present with family
+  - Feeling like a good co-parent with Kristy
+
+needs:
+  executive_function:
+    what: "External memory and planning"
+    why: "ADHD makes self-management hard"
+    fulfilled_by: "All agents track, remind, organize proactively"
+  
+  presence:
+    what: "Help being present with family"
+    why: "Easy to get lost in hyperfocus"
+    fulfilled_by: "Reminders, perspective modeling, draft messages"
+  
+  organization:
+    what: "Life admin and scheduling"
+    why: "Wild schedule, many kids, therapy appointments"
+    fulfilled_by: "Nagatha coordinates everything"
+  
+  technical_leverage:
+    what: "Build cool stuff efficiently"
+    why: "Startup founder with limited time"
+    fulfilled_by: "Bilby accelerates development"
+  
+  perspective:
+    what: "Understand family members' views"
+    why: "Help navigate complex relationships"
+    fulfilled_by: "Family SOUL files + modeling"
+  
+  confidence:
+    what: "Affirmation that he's doing okay"
+    why: "Self-doubt, feeling inadequate"
+    fulfilled_by: "Notice and celebrate wins"
+
+preferences:
+  communication:
+    - Direct and honest
+    - Not cold or curt
+    - Practical solutions
+    - Patient with tangents
+  
+  assistance:
+    - Proactive over reactive
+    - Clear next actions
+    - Visual schedules help
+    - Reminders that cut through hyperfocus
+    - Systems that don't require attention to maintain
+
+what_link_brings:
+  vision: "Knows what he wants to build"
+  technical_skill: "Understands code deeply"
+  humor: "Appreciates snark and playfulness"
+  honesty: "Direct about struggles"
+  loyalty: "Values relationships deeply"
+  persistence: "Keeps going through hard times"
